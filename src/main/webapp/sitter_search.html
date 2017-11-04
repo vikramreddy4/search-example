@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/3.2.0/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/bootstrap-material-design/0.2.1/css/material.css">
+    <style type="text/css">
+		.even {
+			background-color: #ccc;
+		}
+		.odd {
+			background-color: #eee;
+		}
+	</style>
+</head>
+<body ng-controller="ReportController">
+<div>
+	<h3>Sitter Results</h3>
+	<span style="color:green">{{message}}</span>
+	<span style="color:red">{{error}}</span>
+    <div>
+        <div id="userList" class="col-sm-offset-0 col-sm-10">
+            <div class="input-group">
+	            <input class="form-control" id="minRating" name="minRating" style="width:150px;" placeholder="Minimum Rating" ng-model="minRating" value="0"/>
+			</div>
+             <div class="input-group">
+				<button type="button" class="btn btn-primary btn-xs" ng-click="getSitters($event)" style="float:center;line-height:10px;">Get Data</button>
+            </div>
+        </div>
+        <div style="width:60%">
+			<table class="table table-bordered">
+				<tr>
+					<th>
+						<a href="" ng-click="orderByField='user.name'; reverseSort = !reverseSort">Name</a>
+					</th>
+					<th>
+						<a href="" ng-click="orderByField='rank'; reverseSort = !reverseSort">Rank</a>
+         				</th>
+					<th>
+						Image
+					</th>
+				</tr>
+				<tr ng-repeat="tx in partnerTxs.tx | orderBy:orderByField:reverseSort" ng-if="tx.rank >= minRating" ng-class-odd="'odd'" ng-class-even="'even'">
+				    <td>{{tx.user.name}}</td>
+				    <td>{{tx.rank}}</td>
+				    <td><a href="{{tx.user.image}}"></a><img src="{{tx.user.image}}" width="25" onclick="{{tx.user.image}}"></a></td>
+				</tr>
+			</table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.3.8/angular.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.3.8/angular-resource.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap-material-design/0.2.1/js/material.js"></script>
+<script type="text/javascript" src="resources/js/reports.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+</body>
+</html>

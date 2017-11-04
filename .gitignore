@@ -1,0 +1,13 @@
+*~
+*.swp
+/bin/
+/target/
+
+/target/
+/.classpath
+/.project
+/test.log
+/.settings/
+/bin/
+.idea/
+*.iml
