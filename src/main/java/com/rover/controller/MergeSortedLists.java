@@ -1,7 +1,6 @@
 package com.rover.controller;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class MergeSortedLists {
 	public static void main(String[] args) {
@@ -27,17 +26,14 @@ public class MergeSortedLists {
 	}
 
 	public static LinkedList<Integer> mergeLists(LinkedList<Integer> listA, LinkedList<Integer> listB) {
-		LinkedList<Integer> bigList = null, smallList = null;
-		if(listA.size() > listB.size()) {
-			bigList = listA;
-			smallList = listB;
-		}else {
-			bigList = listB;
-			smallList = listA;
-		}
 		int ctr = 0;
-		merge(bigList, smallList, ctr);
-		return bigList;
+		if(listA.size() > listB.size()) {
+			merge(listA, listB, ctr);
+			return listA;
+		}else {
+			merge(listB, listA, ctr);
+			return listB;
+		}
 	}
  	
 	private static void merge(LinkedList<Integer> bigList, LinkedList<Integer> smallList, int ctr) {
