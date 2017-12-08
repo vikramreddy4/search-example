@@ -31,8 +31,7 @@ public class MultithreadExample {
 			set.add(executor.submit(getCallable(queue, 3, 2)));
 			set.add(executor.submit(getCallable(queue, 5, 3)));
 			set.add(executor.submit(getCallable(queue, 7, 4)));
-
-	        for (Future<Boolean> ft : set) {
+			for (Future<Boolean> ft : set) {
 	        	while(!ft.get()) {
 					System.out.println("Still executing");
 	        	}
